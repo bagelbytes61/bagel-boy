@@ -1,0 +1,15 @@
+struct VS_Output
+{
+	float4 positon : SV_POSITION;
+	float2 texcoord : TEXCOORD;
+};
+
+Texture2D objectTexture;
+SamplerState objectSamplerState;
+
+float4 main(VS_Output input) : SV_TARGET
+{
+	return objectTexture.Sample(objectSamplerState, input.texcoord);
+
+	//return float4(1.0f, 0.0f, 0.0f, 1.0f);
+}

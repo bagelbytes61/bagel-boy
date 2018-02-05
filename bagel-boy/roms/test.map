@@ -1,0 +1,28 @@
+Bank #0 (HOME):
+  SECTION: $0000-$0002 ($0003 bytes)
+  SECTION: $0008-$000A ($0003 bytes)
+  SECTION: $0018-$001A ($0003 bytes)
+  SECTION: $0020-$0022 ($0003 bytes)
+  SECTION: $0030-$0032 ($0003 bytes)
+  SECTION: $0038-$003A ($0003 bytes)
+  SECTION: $0040-$0040 ($0001 bytes)
+  SECTION: $0048-$0048 ($0001 bytes)
+  SECTION: $0050-$0050 ($0001 bytes)
+  SECTION: $0058-$0058 ($0001 bytes)
+  SECTION: $0060-$0060 ($0001 bytes)
+  SECTION: $0100-$014A ($004B bytes)
+  SECTION: $0150-$0161 ($0012 bytes)
+           $0150 = Start
+           $0158 = Test_Inc_A
+           $015F = Hang_CPU
+    SLACK: $3F8C bytes
+
+BSS:
+  EMPTY
+
+VRAM:
+  EMPTY
+
+HRAM:
+  EMPTY
+

@@ -1,0 +1,5 @@
+[Objects]
+test.obj
+
+[Output]
+test.gb
