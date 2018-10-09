@@ -7,8 +7,8 @@
 
 struct rom_chip
 {
-	uint8_t bank_0[0x4000];
-	uint8_t bank_1[0x4000];
+    uint8_t* bank_0;
+    uint8_t* bank_n;
 };
 
 struct rom_chip* rom_chip_create(uint8_t* data, uint16_t size);

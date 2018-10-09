@@ -5,13 +5,12 @@
 
 #include <stdint.h>
 
-struct msc
-{
+struct msc {
 	uint8_t cs1, cs2;
 
 	uint8_t* internal_rom;
 
-	struct rom_chip* external_rom_chip;
+	struct rom_chip* rom_chip;
 };
 
 struct msc* msc_create(uint8_t* internal_rom, struct rom_chip* external_rom_chip);

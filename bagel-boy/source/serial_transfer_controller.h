@@ -7,10 +7,10 @@
 
 struct serial_transfer_controller
 {
-	uint8_t sb;
-	uint8_t sc;
+    uint8_t sb;
+    uint8_t sc;
 
-	struct interrupt_controller* interrupt_controller;
+    struct interrupt_controller* interrupt_controller;
 };
 
 struct serial_transfer_controller* serial_transfer_controller_create(struct interrupt_controller* interrupt_controller);

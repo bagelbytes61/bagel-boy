@@ -36,46 +36,17 @@ const uint8_t boot_rom[256] =
 	0xF5, 0x06, 0x19, 0x78, 0x86, 0x23, 0x05, 0x20, 0xFB, 0x86, 0x20, 0xFE, 0x3E, 0x01, 0xE0, 0x50
 };
 
-void cpu_initialize(struct cpu* cpu, struct interrupt_controller* interrupt_controller, struct bus* bus);
-void cpu_deinitialize(struct cpu* cpu);
-
-struct cpu* cpu_create(struct interrupt_controller* interrupt_controller, struct bus* bus)
+void cpu_initialize(struct cpu* cpu, struct interrupt_controller* interrupt_controller, struct bus* bus)
 {
-	struct cpu* cpu = (struct cpu*)malloc(sizeof(struct cpu));
+    memset(cpu, 0, sizeof(struct cpu));
 
-	cpu_initialize(cpu, interrupt_controller, bus);
-
-	return cpu;
+    cpu->interrupt_controller = interrupt_controller;
+    cpu->bus = bus;
 }
 
 void cpu_destroy(struct cpu* cpu)
 {
-	cpu_deinitialize(cpu);
 
-	free(cpu);
-}
-
-void cpu_initialize(struct cpu* cpu, struct interrupt_controller* interrupt_controller, struct bus* bus)
-{
-	memset(cpu, 0, sizeof(struct cpu));
-
-	cpu->a = 0x01;
-	cpu->f = 0xb0;
-	cpu->c = 0x13;
-	cpu->e = 0xd8;
-	cpu->h = 0x01;
-	cpu->l = 0x4d;
-
-	cpu->pc = 0x100;
-	cpu->sp = 0xfffe;
-
-	cpu->interrupt_controller = interrupt_controller;
-	cpu->bus = bus;
-}
-
-void cpu_deinitialize(struct cpu* cpu)
-{
-	
 }
 
 void cpu_cycle(struct cpu* cpu, const uint64_t* clock_cycles)
@@ -100,9 +71,13 @@ void cpu_cycle(struct cpu* cpu, const uint64_t* clock_cycles)
 				break;
 		}
 
-		//SET_BREAKPOINT(cpu->pc == 0x0100)
-
 		instruction->instruction(cpu, operand);
+
+        if (instruction->syntax != "NOP")
+        {
+            printf(instruction->syntax, operand);
+            printf("\n");
+        }
 
 		if (instruction->update_pc)
 		{
@@ -110,12 +85,6 @@ void cpu_cycle(struct cpu* cpu, const uint64_t* clock_cycles)
 		}
 
 		current_instruction_clock_cycles = 0;
-
-		if (instruction->syntax != "NOP")
-		{
-			printf(instruction->syntax, operand);
-			printf("\n");
-		}
 	}
 }
 
@@ -123,7 +92,7 @@ void cpu_handle_interrupts(struct cpu* cpu)
 {
 	if (cpu->ime)
 	{
-		uint8_t io_register_if = cpu->interrupt_controller->interrupt_flag;
+		uint8_t io_register_if = cpu->interrupt_controller->interrupt_flags;
 		uint8_t io_register_ie = cpu->interrupt_controller->interrupt_enable;
 
 		if (!io_register_if || !io_register_ie)
@@ -163,5 +132,7 @@ void cpu_handle_interrupts(struct cpu* cpu)
 		{
 			cpu->pc = INTERRUPT_JOYPAD_ADDRESS;
 		}
+
+        cpu->interrupt_controller->interrupt_flags = 0x00;
 	}
 }

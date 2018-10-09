@@ -3,45 +3,68 @@
 
 #pragma once
 
-#include "hram.h"
-#include "vram.h"
-#include "wram.h"
+#include "bus.h"
+#include "cpu.h"
+#include "cartridge.h"
+#include "interrupt_controller.h"
+#include "io_registers.h"
 
 #include <stdbool.h>
 
-struct bagelboy
-{
-	struct L3D_Application* application;
-	struct L3D_Window* window;
-	struct L3D_GraphicsDevice* device;
+struct bagelboy {
+    struct cartridge cartridge;
 
-	struct cartridge* cartridge;
+    struct interrupt_controller interrupt_controller;
+    
+    struct bus bus;
 
-	struct msc* msc;
+    struct cpu cpu;
 
-	vram_t vram[0x2000];
-	wram_t wram_bank_0[0x1000];
-	wram_t wram_bank_1[0x1000];
-	hram_t hram[0x80];
+    struct io_registers io_registers;
 
-	struct interrupt_controller* interrupt_controller;
-
-	struct joypad* joypad;
-	struct serial_transfer_controller* serial_transfer_controller;
-	struct divider* divider;
-	struct timer* timer;
-	struct lcd_controller* lcd_controller;
-
-	struct bus* bus;
-
-	struct cpu* cpu;
-
-	bool power;
+    bool power;
 };
 
-struct bagelboy* bagelboy_create(const char* filename);
+void bagelboy_initialize(struct bagelboy* bagelboy, const char* filename);
 void bagelboy_destroy(struct bagelboy* bagelboy);
 
 void bagelboy_emulate(struct bagelboy* bagelboy);
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////struct cartridge* cartridge;
+////
+////struct msc* msc;
+////
+////vram_t vram[0x2000];
+////wram_t wram_bank_0[0x1000];
+////wram_t wram_bank_1[0x1000];
+////hram_t hram[0x80];
+////
+////struct interrupt_controller* interrupt_controller;
+////
+////struct bus* bus;
+////
+////struct cpu* cpu;

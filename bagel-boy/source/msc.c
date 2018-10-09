@@ -26,7 +26,7 @@ void msc_destroy(struct msc* msc)
 void msc_initialize(struct msc* msc, uint8_t* internal_rom, struct rom_chip* external_rom_chip)
 {
 	msc->internal_rom = internal_rom;
-	msc->external_rom_chip = external_rom_chip;
+	msc->rom_chip = external_rom_chip;
 }
 
 void msc_deinitialize(struct msc* msc)

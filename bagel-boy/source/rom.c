@@ -5,22 +5,22 @@
 
 uint8_t* loadrom(const char* filename)
 {
-	FILE* romfile = fopen(filename, "rb");
+    FILE* file = fopen(filename, "rb");
 
-	fseek(romfile, 0, SEEK_END);
-	long romsize = ftell(romfile);
-	rewind(romfile);
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);
+    rewind(file);
 
-	uint8_t* rom = (uint8_t*)malloc(romsize);
+    uint8_t* rom = malloc(size);
 
-	fread(rom, 1, romsize, romfile);
+    fread(rom, sizeof(uint8_t), size, file);
+    
+    fclose(file);
 
-	fclose(romfile);
-
-	return rom;
+    return rom;
 }
 
 void freerom(uint8_t* rom)
 {
-	free(rom);
+    free(rom);
 }

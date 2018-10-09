@@ -5,8 +5,7 @@
 
 #include <stdint.h>
 
-struct joypad
-{
+struct joypad {
 	uint8_t p1;
 
 	struct interrupt_controller* interrupt_controller;

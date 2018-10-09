@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -13,120 +9,136 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\wram.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\vram.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\timer.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\serial_transfer_controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\rom_chip.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\rom.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\msc.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\mbc.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\lcd_controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\joypad.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\io_registers.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\interrupt_controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\instructions.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\instruction_sets.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\hram.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\cpu.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\cartridge.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\bus.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="source\bagelboy.h">
-      <Filter>Header Files</Filter>
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dma_controller.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\echo.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\oam.h">
+      <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\wram.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\vram.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\serial_transfer_controller.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\rom_chip.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\rom.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\msc.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\main.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\lcd_controller.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\joypad.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\interrupt_controller.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\instructions.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\instruction_sets.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\hram.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\cpu.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\cartridge.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\bus.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\bagelboy.c">
-      <Filter>Source Files</Filter>
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\io_registers.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\oam.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

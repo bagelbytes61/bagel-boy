@@ -10,17 +10,17 @@
 
 static void inc(struct cpu* cpu, uint8_t* n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(*n + 1) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(*n + 1) == 0x0);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, (*n & 0x0f) == 0x0f);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 
 	(*n)++;
 }
 
 static void dec(struct cpu* cpu, uint8_t* n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(*n - 1) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_SET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(*n - 1) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_SET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, (*n & 0x0f) > 0x0);
 
 	(*n)--;
@@ -28,10 +28,10 @@ static void dec(struct cpu* cpu, uint8_t* n)
 
 static void add(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(cpu->a + n) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(cpu->a + n) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, (((cpu->a & 0x0f) + (n & 0x0f)) & 0x10) == 0x10);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, cpu->a + n > 0xff);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     cpu->a + n > 0xff);
 
 	cpu->a += n;
 }
@@ -40,20 +40,20 @@ static void adc(struct cpu* cpu, uint8_t n)
 {
 	uint8_t carry_flag = FLAG_STATE(cpu, FLAG_CARRY);
 
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(cpu->a + n + carry_flag) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(cpu->a + n + carry_flag) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, (cpu->a & 0x0f) + ((n & 0x0f) + carry_flag) > 0x0f);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, cpu->a + n + carry_flag > 0xff);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     cpu->a + n + carry_flag > 0xff);
 
 	cpu->a += n + carry_flag;
 }
 
 static void sub(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(cpu->a - n) == 0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_SET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(cpu->a - n) == 0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_SET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, ((cpu->a & 0x0f) - (n & 0x0f)) >= 0x0);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, !(~cpu->a & n));
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     !(~cpu->a & n));
 
 	cpu->a -= n;
 }
@@ -62,50 +62,50 @@ static void sbc(struct cpu* cpu, uint8_t n)
 {
 	uint8_t carry_flag = FLAG_STATE(cpu, FLAG_CARRY);
 
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(cpu->a - (n + carry_flag)) == 0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_SET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(cpu->a - (n + carry_flag)) == 0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_SET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, ((cpu->a & 0x0F) - ((n & 0x0F) + carry_flag)) >= 0x0);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, !(~cpu->a & (n + carry_flag)));
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     !(~cpu->a & (n + carry_flag)));
 
 	cpu->a -= n + carry_flag;
 }
 
 static void and_bb(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (cpu->a & n) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (cpu->a & n) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, FLAG_STATE_SET);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     FLAG_STATE_RESET);
 
 	cpu->a &= n;
 }
 
 static void or_bb(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (cpu->a | n) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (cpu->a | n) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, FLAG_STATE_RESET);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     FLAG_STATE_RESET);
 
 	cpu->a |= n;
 }
 
 static void xor_bb(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (cpu->a ^ n) == 0x0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (cpu->a ^ n) == 0x0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, FLAG_STATE_RESET);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     FLAG_STATE_RESET);
 
 	cpu->a ^= n;
 }
 
 static void cp(struct cpu* cpu, uint8_t n)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, (uint8_t)(cpu->a - n) == 0);
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_SET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,      (uint8_t)(cpu->a - n) == 0);
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_SET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, (cpu->a & 0x0F) - (n & 0x0F) >= 0x0);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, cpu->a < n);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     cpu->a < n);
 }
 
 static void rlc(struct cpu* cpu, uint8_t* n)
@@ -206,10 +206,10 @@ static void swap(struct cpu* cpu, uint8_t* n)
 
 static void bit(struct cpu* cpu, uint8_t b, uint8_t r)
 {
-	SET_FLAG_STATE(cpu, FLAG_ZERO, !BIT_SET(r, b));
-	SET_FLAG_STATE(cpu, FLAG_SUBTRACT, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_ZERO,     !BIT_SET(r, b));
+	SET_FLAG_STATE(cpu, FLAG_SUBTRACT,  FLAG_STATE_RESET);
 	SET_FLAG_STATE(cpu, FLAG_HALFCARRY, FLAG_STATE_RESET);
-	SET_FLAG_STATE(cpu, FLAG_CARRY, FLAG_STATE_RESET);
+	SET_FLAG_STATE(cpu, FLAG_CARRY,     FLAG_STATE_RESET);
 }
 
 static void set(struct cpu* cpu, uint8_t b, uint8_t* r)
@@ -438,8 +438,13 @@ void instruction_1f(struct cpu* cpu, uint16_t reserved)		//rra
 	cpu->a |= old_carry_flag << 7;
 }
 
+#define SET_BREAKPOINT(condition) if(condition) { __debugbreak(); }
+
+
 void instruction_20(struct cpu* cpu, uint16_t r8)			//jr nz, r8
 {
+    SET_BREAKPOINT(r8 == 0xFe);
+
 	if (FLAG_STATE(cpu, FLAG_ZERO) == FLAG_STATE_RESET)
 	{
 		cpu->pc += (int8_t)r8;
@@ -1306,6 +1311,9 @@ void instruction_bd(struct cpu* cpu, uint16_t reserved)		//cp l
 void instruction_be(struct cpu* cpu, uint16_t reserved)		//cp (hl)
 {
 	uint8_t hl_address_value = bus_read(cpu->bus, REGISTER_HL(cpu));
+
+	//SET_BREAKPOINT(1);
+	printf("register hl: %u", hl_address_value);
 
 	cp(cpu, hl_address_value);
 }

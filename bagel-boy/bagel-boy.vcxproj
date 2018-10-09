@@ -18,6 +18,51 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\bagelboy.h" />
+    <ClInclude Include="source\bus.h" />
+    <ClInclude Include="source\cartridge.h" />
+    <ClInclude Include="source\cpu.h" />
+    <ClInclude Include="source\dma_controller.h" />
+    <ClInclude Include="source\echo.h" />
+    <ClInclude Include="source\hram.h" />
+    <ClInclude Include="source\instructions.h" />
+    <ClInclude Include="source\instruction_sets.h" />
+    <ClInclude Include="source\interrupt_controller.h" />
+    <ClInclude Include="source\io_registers.h" />
+    <ClInclude Include="source\joypad.h" />
+    <ClInclude Include="source\lcd_controller.h" />
+    <ClInclude Include="source\mbc.h" />
+    <ClInclude Include="source\msc.h" />
+    <ClInclude Include="source\oam.h" />
+    <ClInclude Include="source\rom.h" />
+    <ClInclude Include="source\rom_chip.h" />
+    <ClInclude Include="source\serial_transfer_controller.h" />
+    <ClInclude Include="source\utilities.h" />
+    <ClInclude Include="source\vram.h" />
+    <ClInclude Include="source\wram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\bagelboy.c" />
+    <ClCompile Include="source\bus.c" />
+    <ClCompile Include="source\cartridge.c" />
+    <ClCompile Include="source\cpu.c" />
+    <ClCompile Include="source\hram.c" />
+    <ClCompile Include="source\instructions.c" />
+    <ClCompile Include="source\instruction_sets.c" />
+    <ClCompile Include="source\interrupt_controller.c" />
+    <ClCompile Include="source\io_registers.cpp" />
+    <ClCompile Include="source\joypad.c" />
+    <ClCompile Include="source\lcd_controller.c" />
+    <ClCompile Include="source\main.c" />
+    <ClCompile Include="source\msc.c" />
+    <ClCompile Include="source\oam.cpp" />
+    <ClCompile Include="source\rom.c" />
+    <ClCompile Include="source\rom_chip.c" />
+    <ClCompile Include="source\serial_transfer_controller.c" />
+    <ClCompile Include="source\vram.c" />
+    <ClCompile Include="source\wram.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{85A1615B-6272-402A-ABBE-2E83BB8F6546}</ProjectGuid>
@@ -87,7 +132,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -115,7 +160,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -142,47 +187,6 @@
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="source\bagelboy.h" />
-    <ClInclude Include="source\bus.h" />
-    <ClInclude Include="source\cartridge.h" />
-    <ClInclude Include="source\cpu.h" />
-    <ClInclude Include="source\hram.h" />
-    <ClInclude Include="source\instructions.h" />
-    <ClInclude Include="source\instruction_sets.h" />
-    <ClInclude Include="source\interrupt_controller.h" />
-    <ClInclude Include="source\io_registers.h" />
-    <ClInclude Include="source\joypad.h" />
-    <ClInclude Include="source\lcd_controller.h" />
-    <ClInclude Include="source\mbc.h" />
-    <ClInclude Include="source\msc.h" />
-    <ClInclude Include="source\rom.h" />
-    <ClInclude Include="source\rom_chip.h" />
-    <ClInclude Include="source\serial_transfer_controller.h" />
-    <ClInclude Include="source\timer.h" />
-    <ClInclude Include="source\utilities.h" />
-    <ClInclude Include="source\vram.h" />
-    <ClInclude Include="source\wram.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="source\bagelboy.c" />
-    <ClCompile Include="source\bus.c" />
-    <ClCompile Include="source\cartridge.c" />
-    <ClCompile Include="source\cpu.c" />
-    <ClCompile Include="source\hram.c" />
-    <ClCompile Include="source\instructions.c" />
-    <ClCompile Include="source\instruction_sets.c" />
-    <ClCompile Include="source\interrupt_controller.c" />
-    <ClCompile Include="source\joypad.c" />
-    <ClCompile Include="source\lcd_controller.c" />
-    <ClCompile Include="source\main.c" />
-    <ClCompile Include="source\msc.c" />
-    <ClCompile Include="source\rom.c" />
-    <ClCompile Include="source\rom_chip.c" />
-    <ClCompile Include="source\serial_transfer_controller.c" />
-    <ClCompile Include="source\vram.c" />
-    <ClCompile Include="source\wram.c" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -7,16 +7,17 @@
 
 #include <stdint.h>
 
-#define LCD_MODE_00_CLK_CYCLE_DURATION	20
+#define LCD_MODE_00_CLK_CYCLE_BEGIN     201
+#define LCD_MODE_00_CLK_CYCLE_END       207
 
-#define LCD_MODE_01_CLOCK_CYCLE_BEGIN	144
-#define LCD_MODE_01_CLOCK_CYCLE_END		153
+#define LCD_MODE_01_CLK_CYCLE_BEGIN     144
+#define LCD_MODE_01_CLK_CYCLE_END       153
 
-#define LCD_MODE_10_CLOCK_CYCLE_BEGIN	77
-#define LCD_MODE_10_CLOCK_CYCLE_END		83
+#define LCD_MODE_10_CLK_CYCLE_BEGIN     77
+#define LCD_MODE_10_CLK_CYCLE_END       83
 
-#define LCD_MODE_11_CLOCK_CYCLE_BEGIN	169
-#define LCD_MODE_11_CLOCK_CYCLE_END		175
+#define LCD_MODE_11_CLK_CYCLE_BEGIN     169
+#define LCD_MODE_11_CLK_CYCLE_END       175
 
 #define LCD_MODE_00	0x00
 #define LCD_MODE_01	0x01
@@ -27,14 +28,6 @@
 
 struct lcd_controller
 {
-	struct L3D_GraphicsDevice* device;
-
-	struct L3D_Buffer* display_vertex_buffer;
-	struct L3D_Shader* vertex_shader;
-	struct L3D_Shader* pixel_shader;
-	struct L3D_VertexLayout* vertex_layout;
-	struct L3D_Texture* background_texture;
-
 	uint8_t lcdc;
 	uint8_t stat;
 
